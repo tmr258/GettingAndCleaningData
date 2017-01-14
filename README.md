@@ -113,6 +113,32 @@ Tidy data fullfills:
 3. Each type of observational unit forms a table.
 4. if you have multiple tables , they should contain a column in the table that enables them to be linked
 
+The output looks like this (with only the first two variable colums shown):
+
+ head(tidyDataset, 20)
+   Unique_ID_of_testperson Activity_of_the_testperson fBodyAcc-mean()-X fBodyAcc-mean()-Y
+1                        1                     Laying       -0.63511136       -0.63526405
+2                        1                    Sitting       -0.54047878       -0.51518225
+3                        1                   Standing       -0.58519054       -0.57851281
+4                        1                    Walking       -0.15284692       -0.14631051
+5                        1         Walking downstairs       -0.16521958       -0.16368915
+6                        1           Walking upstairs       -0.26216374       -0.29095790
+7                        2                     Laying       -0.61398761       -0.58835668
+8                        2                    Sitting       -0.64875314       -0.68720197
+9                        2                   Standing       -0.55149555       -0.51929308
+10                       2                    Walking       -0.24012411       -0.23258776
+11                       2         Walking downstairs       -0.07273542       -0.09155925
+12                       2           Walking upstairs       -0.26572096       -0.30026465
+13                       3                     Laying       -0.65055207       -0.62393296
+14                       3                    Sitting       -0.61352479       -0.61982855
+15                       3                   Standing       -0.64112506       -0.68420320
+16                       3                    Walking       -0.28047532       -0.29848941
+17                       3         Walking downstairs       -0.14013278       -0.14289523
+18                       3           Walking upstairs       -0.37360923       -0.36790209
+19                       4                     Laying       -0.62251888       -0.66668894
+20                       4                    Sitting       -0.62216021       -0.58187857
+
+
 Order of processing
 
 - Now the tidy data set has to be made containing the averages for the variables per person and per activity. First is to produce the long and narrow data set, using the melt() function. This results in dataMelt, a long set of 813,621 rows and 4 columns, "Unique_ID_of_testperson", "Activity_of_the_testperson", Variable and the values of the variables.
