@@ -3,13 +3,13 @@ Repo for the final assignment for the Getting and Cleaning Data module of the Co
 
 The repo contains an R script run_analysis.R, this readme file with a specification of the R code and a code book that descibed the variables used in run_analysis.R
 
-1	BACKGROUND
+# 1	BACKGROUND
 
 run_analysis.R is the result of the programming assignment of Week 4 for the 
 "Getting and Cleaning Data" module of the Coursera Data Science Specialisation offered
 by the Johns Hopkins University
 
-2	DATA SET ORIGIN
+# 2	DATA SET ORIGIN
  
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset
@@ -27,9 +27,7 @@ The experiments have been carried out with a group of 30 volunteers within an ag
 
 The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
 
-For each record it is provided:
-======================================
-
+For each record it is provided
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 - A 561-feature vector with time and frequency domain variables. 
@@ -37,7 +35,6 @@ For each record it is provided:
 - An identifier of the subject who carried out the experiment.
 
 The dataset includes the following files:
-=========================================
 
 - 'README.txt'
 
@@ -66,13 +63,13 @@ The following files are available for the train and test data. Their description
 - 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
 Notes: 
-======
+
 - Features are normalized and bounded within [-1,1].
 - Each feature vector is a row on the text file.
 
 For more information about this dataset contact: activityrecognition@smartlab.ws
 
-3	FUNCTIONAL SPECIFICATION OR RUN_ANALYSIS.R
+# 3	FUNCTIONAL SPECIFICATION OR RUN_ANALYSIS.R
 
 The functionality of run_analysis is:
 
@@ -83,7 +80,7 @@ The functionality of run_analysis is:
 5.	From the data set in step 4, it creates a second, independent tidy data set with the 
     average of each variable for each activity and each subject.
 
-Part 1: merging the training and test set to one set
+## Part 1: merging the training and test set to one set
 
 Order of processing
 
@@ -98,8 +95,7 @@ Order of processing
 
 Result:  all the Samsung run data are now in one data frame called total_rundata_set.
 
-Part 2: assigning variable labels and replace the activity ID's with the more descriptive names that are given in
-activity_names.txt 
+## Part 2: assigning variable labels and replace the activity ID's with the more descriptive names that are given in activity_names.txt 
 
 Order of processing
 
@@ -112,7 +108,7 @@ Order of processing
 - Now that we have the set of columns containing an std or mean variable, the final resultset can be generated, in variable final_rundata_set. The final_rundata_set is the data frame that contains the mean and std related variables, the measurements from the train and test set, the activity levels of the testpersons in descriptive text (instead of the numbers 1-6) and descriptive labels for the measurement variables. This fulfills requirements 1-4 of the assignment
 - To conclude this part again cleanup temporary variables in the run_analysis script. The variables total_rundata_set, column_index_containing_std, column_index_containing_mean, selection_of_columns_with_mean_or_std, all_selected_colums are removed.
 
-Part 3: Produce the tidy data set.
+## Part 3: Produce the tidy data set.
 
 Tidy data fullfills:
 
