@@ -86,6 +86,7 @@ The functionality of run_analysis is:
 Part 1: merging the training and test set to one set
 
 Order of processing
+
 -Setting the working directory for the metadata files by using setwd
 -Then reading the features file to later use in the names for the columns of the total_rundata_set
 -Setting the working directory for the training set by using setwd
@@ -102,23 +103,24 @@ Part 2: assigning variable labels and replace the activity ID's with the more de
 activity_names.txt 
 
 Order of processing
+
 -Create variable labels. The variable labels have been read from the features.txt file and are contained in the 
 features object. In a for loop all the features are added to the columns as names. In an additional action the 
 unique ID's for the testpersons (ranging from 1-30), and the activities are added as column name, in columns 562 ans 563
-- As intermediate step the temporary objects are removed to free up memory for the next steps. These are X_test_df, 
+-As intermediate step the temporary objects are removed to free up memory for the next steps. These are X_test_df, 
 X_train_df, y_test_df, y_train_df, subject_test_df, subject_train_df, train_df, test_df, features.
-- The next for loop in the lines 83-95 is done to replace the values in the column for the Activity for the testperson 
+-The next for loop in the lines 83-95 is done to replace the values in the column for the Activity for the testperson 
 with understandable wording. This data is contained in activity_names.txt but the choice for efficiency reasons was to 
 implement this with a simple for loop and not by reading the file and programming code for that
 -Extract the variables containing a mean or standard deviation, first the mean and then the std
-- Make one vector with all the mean and std variables in it
-- Also include the columns with the testperson IDs and activity level to make the selection from the 
+-Make one vector with all the mean and std variables in it
+-Also include the columns with the testperson IDs and activity level to make the selection from the 
 total_rundata_set variables.
-- Now that we have the set of columns containing an std or mean variable, the final resultset can be generated, in 
+-Now that we have the set of columns containing an std or mean variable, the final resultset can be generated, in 
 variable final_rundata_set. The final_rundata_set is the data frame that contains the mean and std related variables,
 the measurements from the train and test set, the activity levels of the testpersons in descriptive text (instead of the numbers 1-6) and descriptive labels for the measurement
 variables. This fulfills requirements 1-4 of the assignment
-- To concule this part again cleanup temporary variables in the run_analysis script. The variables total_rundata_set,
+-To concule this part again cleanup temporary variables in the run_analysis script. The variables total_rundata_set,
 column_index_containing_std, column_index_containing_mean, selection_of_columns_with_mean_or_std, all_selected_colums are
 removed.
 
@@ -135,9 +137,9 @@ Order of processing
 -Now the tidy data set has to be made containing the averages for the variables per person and per activity. First is to
 produce the long and narrow data set, using the melt() function. This results in dataMelt, a long set of 813,621 rows and
 4 columns, "Unique_ID_of_testperson", "Activity_of_the_testperson", Variable and the values of the variables.
-- Create the vars temporary object that is used to make the statement to generate the tidyDataset more compact. It contains
+-Create the vars temporary object that is used to make the statement to generate the tidyDataset more compact. It contains
 the variable names tBodyAcc-mean()-X to fBodyBodyGyroJerkMag-meanFreq()
-- Finally the tidy data set is created with the means of the variable for the activities per test person
+-Finally the tidy data set is created with the means of the variable for the activities per test person
 
 tidyDataset <- dcast(dataMelt, Unique_ID_of_testperson + Activity_of_the_testperson ~vars,mean)
 
