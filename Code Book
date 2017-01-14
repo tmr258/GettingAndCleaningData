@@ -1,0 +1,99 @@
+run_analysis.R is the result of the programming assignment of Week 4 for the 
+"Getting and Cleaning Data" module of the Coursera Data Science Specialisation offered
+by the Johns Hopkins University
+
+The functionality of run_analysis is:
+
+ 1.	It merges the training and the test sets to create one data set.
+ 2.	It extracts only the measurements on the mean and standard deviation for each measurement. 
+ 3.	It uses descriptive activity names to name the activities in the data set
+ 4.	It appropriately labels the data set with descriptive variable names. 
+ 5.	From the data set in step 4, it creates a second, independent tidy data set with the 
+        average of each variable for each activity and each subject.
+
+The logic is decribed in the script code, with additional explanation of the variables that are used in this code book. 
+
+Within run_analysis.R the following variables are used. 
+
+Reading the features file to later use in the names for the columns of the total_rundata_set
+
+Variable: features 
+This variable is used to store the character strings for the column names. The characters are read from the features.txt file
+In line 62, this variable is used to set the column names for the columns of the total_rundata_set. It is only a temporary 
+object, in line 76 is is removed to free memory.
+
+Variable: X_train_df
+This variable is a data frame. The object is used to store the values read from the X_train.txt file, which contains the 
+Samsung training measurements. These measurements are essentially the same kind of measurements, but have been labeled 
+'training data ' by the researchers, to enable development of analytical models.
+
+Variable: y_train_df
+This variable is a data frame. The object is used to store the values read from the y_train.txt file, which contains the 
+activity labels ('walking', 'sitting'etc) for the measurements that are in the X_train_df rows.
+
+Variable: subject_train_df
+This variable is a data frame. The object is used to store the values read from the subject_train.txt file, which 
+contains the ID's for the testpersons that perform the movements for which the data is in the X_train rows. 
+
+Variable: X_test_df
+This variable is a data frame. The object is used to store the values read from the X_test.txt file, which contains the 
+Samsung training measurements. Note that these are the same measurements but have been labeled Test to facilitate testing 
+of models that have been developed.
+
+Variable: y_test_df
+This variable is a data frame. The object is used to store the values read from the y_test.txt file, which contains the 
+activity labels ('walking', 'sitting'etc) for the measurements that are in the X_test_df rows.
+
+Variable: subject_test_df
+This variable is a data frame. The object is used to store the values read from the subject_test.txt file, which 
+contains the ID's for the testpersons that perform the movements for which the data is in the X_test rows. 
+
+In the next steps the training data and test data are bound together in one data frame for the training data and one
+data frame for the test data. The dataframes are then combined by rbind. The following variables are used.
+
+Variable: train_df
+This variable is used to combine X_train_df, y_train_df and subject_train_df. It is only a temporary variable and is
+removed in line 74.  
+
+Variable: test_df 
+This variable is used to combine X_test_df, y_test_df and subject_test_df
+
+All variables above are removed from memory in lines 68-75 since they were only temporary. 
+
+Variable: total_rundata_set 
+The variable total_rundat_set contains all data that is read from the training and test data files. In line 61-65 the column names are set
+In lines 83-95 the activities of the test persons, that are given with integers from 1 to 6 are replaced by characters with the information
+from the activity_names.txt file.
+
+Variable: column_index_containing_mean 
+This variable is used to contain the values for the columns that have a variable associated with a mean (as required in the
+assignment.
+
+Variable: column_index_containing_std                                    
+This variable is used to contain the values for the columns that have a variable associated with a standard deviation (std) 
+(as required in the assignment).
+
+Variable: selection_of_columns_with_mean_or_std 
+This variable is used to combine the results of the columns for mean and std to make the column selection statement in line 108
+more compact. 
+
+Variable: all_selected_colums 
+This variable is used to add the columns 562 and 563 which contain the ID of the testpersons and the activity name. 
+
+Variable: final_rundata_set 
+This variable stores the data that is from measurements associated with a mean and std, as required in the assignment. 
+As such it is the final set for steps 1-4. This variable is the basis for the tidy data set (step 5)
+
+Variable: dataMelt 
+This variable is used to make a long and narrow data set for tidying the data in step 5. The Unique_ID_of_testperson 
+and Activity_of_the_testperson data is sued as ID's and the rest of the data as variable. This enables casting in the 
+next step
+
+Variable: vars
+The vars temporary object is used to make the statement to generate the tidyDataset more compact
+It contains the variable names tBodyAcc-mean()-X to fBodyBodyGyroJerkMag-meanFreq()
+ 
+Variable: tidyDataset 
+This is the variable that store the tidy data set with the mean of the variabes tBodyAcc-mean()-X to 
+fBodyBodyGyroJerkMag-meanFreq(). 
+
